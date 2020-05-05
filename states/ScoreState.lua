@@ -1,22 +1,22 @@
-
-ScoreState = Class{__includes = BaseState}
+ScoreState = Class{__includes = BaseState} --включает в себя все из BaseState(Осторожнее нижнее подчеркивание должно быть двойным __)
 
 function ScoreState:enter(params)
     self.score = params.score
 end
 
 function ScoreState:update(dt)
+  --Игра начинается если нажали на Enter
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
-        gStateMachine:change('play')
+      gStateMachine:change('play')
     end
 end
 
 function ScoreState:render()
-    love.graphics.setFont(flappyFont)
-    love.graphics.printf('Oof! You lost!', 0, 64, VIRTUAL_WIDTH, 'center')
+  love.graphics.setFont(flappyFont)
+  love.graphics.printf('Oof! You lost!', 0, 64, VIRTUAL_WIDTH, 'center')
 
-    love.graphics.setFont(mediumFont)
-    love.graphics.printf('Score: ' .. tostring(self.score), 0, 100, VIRTUAL_WIDTH, 'center')
+  love.graphics.setFont(mediumFont)
+  love.graphics.printf('Score: ' .. tostring(self.score), 0, 100, VIRTUAL_WIDTH, 'center')
 
-    love.graphics.printf('Press Enter to Play Again!', 0, 160, VIRTUAL_WIDTH, 'center')
+  love.graphics.printf('Press Enter to Play Again!', 0, 160, VIRTUAL_WIDTH, 'center')
 end
